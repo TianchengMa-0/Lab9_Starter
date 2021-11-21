@@ -87,6 +87,12 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({
+      token: "c0701768eb1542cb8fad477b59928dbd"
+    });
+  </script>
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -102,6 +108,154 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    const log_btn = errorBtns[0];
+    log_btn.addEventListener('click', () => {
+      console.log("this is boring log");
+    })
+
+    const err_btn = errorBtns[1];
+    err_btn.addEventListener('click', () => {
+      console.error("this is artificial error");
+    })
+
+    const count_btn = errorBtns[2];
+    count_btn.addEventListener('click', () => {
+      console.count('banana');
+      console.count('coffee');
+      console.count('apple');
+      console.count('apple');
+      console.count();
+      console.count('coffee');
+      console.count();
+      console.count('coffee');
+    })
+
+    const warn_btn = errorBtns[3];
+    warn_btn.addEventListener('click', () => {
+      console.warn("due date is coming!!!");
+    })
+
+    const assert_btn = errorBtns[4];
+    assert_btn.addEventListener('click', () => {
+      const essay_word_count = 5000;
+      const monday = 1000;
+      const reason = 'this essay is NOT expected to be longer than a Monday';
+      console.assert(essay_word_count < monday, { essay_word_count, monday, reason });
+    })
+
+    const clear_btn = errorBtns[5];
+    clear_btn.addEventListener('click', () => {
+      console.clear();
+    })
+
+    const dir_btn = errorBtns[6];
+    dir_btn.addEventListener('click', () => {
+      console.dir(document.querySelector('main'));
+    })
+
+    const dirxml_btn = errorBtns[7];
+    dirxml_btn.addEventListener('click', () => {
+      console.dirxml(document.querySelector('main'));
+    })
+
+    const group_s_btn = errorBtns[8];
+    const label = 'payphone';
+    group_s_btn.addEventListener('click', () => {
+      console.group(label);
+      console.info('I am at a payphone trying to call home');
+      console.info('All of my change I spent on you');
+      console.info('where have the times gone?');
+      console.info('Baby it is all wrong');
+      console.info('where are the plans we made for two?');
+    })
+    const group_e_btn = errorBtns[9];
+    group_e_btn.addEventListener('click', () => {
+      console.groupEnd(label);
+    })
+
+    const table_btn = errorBtns[10];
+    table_btn.addEventListener('click', () => {
+      console.table([
+        {
+          Newton: 'level up',
+          Lagrange: 'midpoint',
+          interpolation: 'polynomial',
+        },
+        {
+          Newton: 'level down',
+          Lagrange: 'endpoint',
+          interpolation: 'extropolation',
+        },
+        {
+          Newton: 'level max',
+          Lagrange: 'CSDN point',
+          interpolation: 'felix',
+        }
+      ]);
+    })
+
+    const time_s_btn = errorBtns[11];
+    time_s_btn.addEventListener('click', () => {
+      console.time();
+      for (var i = 0; i < 200000; i++) { let square = i + 2; }
+    })
+    const time_e_btn = errorBtns[12];
+    time_e_btn.addEventListener('click', () => {
+      console.timeEnd();
+    })
+
+    const trace_btn = errorBtns[13];
+    trace_btn.addEventListener('click', () => {
+      const Mon = () => { Tue(); };
+      const Tue = () => { Wed(); };
+      const Wed = () => { Thurs(); };
+      const Thurs = () => { console.trace(); };
+      Mon();
+    })
+
+    const global_btn = errorBtns[14];
+    global_btn.addEventListener('click', () => {
+      window.onerror = function (message, url, line, col, error) {
+        console.log(`${message}\n At line:${line} column:${col} of ${url}`);
+      };
+
+      function badFunc() {
+        jklkl;
+      }
+      badFunc();
+    })
+
+    let over_21 = false;
+    try {
+      alert('Welcome to Alcohal Shop');
+      if (confirm('are you over 21 for alcohal?')) {
+        over_21 = true;
+        throw new Error();
+      }
+      alert('Sorry you cannot purchase alcohal for now');
+    }
+    catch (err) {
+      alert('feel free to buy any');
+    } finally {
+      alert('have a good day');
+    }
+
+    class ValidationError extends Error {
+      constructor(message) {
+        super(message);
+      }
+    }
+    try {
+      if (!over_21) {
+        throw new ValidationError("Whoops! we cannot offer any help because of your age");
+      }
+      console.log('ask assistant for any help');
+    } catch (err) {
+      console.log(err.message);
+    }
+
+    TrackJS.track('Testing TrackJS!');
+
   </script>
 </body>
 
