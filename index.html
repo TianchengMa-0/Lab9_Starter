@@ -216,7 +216,7 @@
     const global_btn = errorBtns[14];
     global_btn.addEventListener('click', () => {
       window.onerror = function (message, url, line, col, error) {
-        console.log(`${message}\n At line:${line} column:${col} of ${url}`);
+        console.log(`${message}`);
       };
 
       function badFunc() {
